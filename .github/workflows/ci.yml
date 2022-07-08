@@ -15,13 +15,14 @@ jobs:
       matrix:
         include:
           # C++14 is default in GCC 6.1 through 10
-          - { toolset: gcc-6,  cxxstd: '14', compiler: g++-6, install: g++-6, os: ubuntu-18.04 }
-          - { toolset: gcc-7,  cxxstd: '14', compiler: g++-7, install: g++-7, os: ubuntu-18.04  }
-          - { toolset: gcc-8,  cxxstd: '14', compiler: g++-8, install: g++-8, os: ubuntu-18.04  }
-          - { toolset: gcc-9,  cxxstd: '14', compiler: g++-9, install: g++-9, os: ubuntu-18.04  }
-          - { toolset: gcc-10, cxxstd: '14', compiler: g++-10, install: g++-10, os: ubuntu-20.04 }
-          - { toolset: clang,  cxxstd: '14', compiler: clang++-3.6, install: clang-3.6, os: ubuntu-18.04 }
-          - { toolset: clang,  cxxstd: '14', compiler: clang++-4.0, install: clang-4.0, os: ubuntu-18.04 }
+          - { compiler: g++-6,        cxxstd: '14', toolset: gcc-6,  install: g++-6, os: ubuntu-18.04 }
+          - { compiler: g++-7,        cxxstd: '14', toolset: gcc-7,  install: g++-7, os: ubuntu-18.04  }
+          - { compiler: g++-8,        cxxstd: '14', toolset: gcc-8,  install: g++-8, os: ubuntu-18.04  }
+          - { compiler: g++-9,        cxxstd: '14', toolset: gcc-9,  install: g++-9, os: ubuntu-18.04  }
+          - { compiler: g++-10,       cxxstd: '14', toolset: gcc-10, install: g++-10, os: ubuntu-20.04 }
+          - { compiler: clang++-3.6,  cxxstd: '14', toolset: clang,  install: clang-3.6, os: ubuntu-20.04, container: 'ubuntu:16.04'  }
+          - { compiler: clang++-3.6,  cxxstd: '14', toolset: clang,  install: clang-3.6, os: ubuntu-18.04 }
+          - { compiler: clang++-4.0,  cxxstd: '14', toolset: clang,  install: clang-4.0, os: ubuntu-18.04 }
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
@@ -38,9 +39,13 @@ jobs:
       matrix:
         include:
           # C++17 is default in GCC 11 through 12
-          - { toolset: gcc-11, cxxstd: '17', compiler: g++-11, install: g++-11, os: ubuntu-20.04 }
-          - { toolset: gcc-12, cxxstd: '17', compiler: g++-12, install: g++-12, os: ubuntu-20.04 }
-          - { toolset: clang,  cxxstd: '17', compiler: clang++-5.0, install: clang-5.0, os: ubuntu-18.04 }
+          - { compiler: g++-11,       cxxstd: '17', toolset: gcc-11, install: g++-11, os: ubuntu-20.04 }
+          - { compiler: g++-12,       cxxstd: '17', toolset: gcc-12, install: g++-12, os: ubuntu-20.04 }
+          - { compiler: clang++-5.0,  cxxstd: '17', toolset: clang,  install: clang-5.0, os: ubuntu-18.04 }
+          - { compiler: clang++-6.0,  cxxstd: '17', toolset: clang,  install: clang-6.0, os: ubuntu-18.04 }
+          - { compiler: clang++-7,    cxxstd: '17', toolset: clang,  install: clang-7, os: ubuntu-18.04 }
+          - { compiler: clang++-8,    cxxstd: '17', toolset: clang,  install: clang-8, os: ubuntu-20.04 }
+          - { compiler: clang++-9,    cxxstd: '17', toolset: clang,  install: clang-9, os: ubuntu-20.04 }
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
@@ -57,13 +62,14 @@ jobs:
       matrix:
         include:
           # C++20 is available in GCC 10 through 12
-        - { toolset: gcc-10, cxxstd: '20', compiler: g++-11, install: g++-11, os: ubuntu-20.04 }
-        - { toolset: gcc-11, cxxstd: '20', compiler: g++-12, install: g++-12, os: ubuntu-20.04 }
-        - { toolset: clang,  cxxstd: '20', compiler: clang++-10, install: clang-10.0, os: ubuntu-20.04 }
-        - { toolset: clang,  cxxstd: '20', compiler: clang++-11, install: clang-11.0, os: ubuntu-20.04 }
-        - { toolset: clang,  cxxstd: '20', compiler: clang++-12, install: clang-12.0, os: ubuntu-20.04 }
-        - { toolset: clang,  cxxstd: '20', compiler: clang++-13, install: clang-13.0, os: ubuntu-20.04 }
-        - { toolset: clang,  cxxstd: '20', compiler: clang++-14, install: clang-14.0, os: ubuntu-20.04 }
+          - { compiler: g++-10,       cxxstd: '20', toolset: gcc-10, install: g++-10, os: ubuntu-20.04 }
+          - { compiler: g++-11,       cxxstd: '20', toolset: gcc-11, install: g++-11, os: ubuntu-20.04 }
+          - { compiler: g++-12,       cxxstd: '20', toolset: gcc-12, install: g++-12, os: ubuntu-20.04 }
+          - { compiler: clang++-10,   cxxstd: '20', toolset: clang,  install: clang-10, os: ubuntu-20.04 }
+          - { compiler: clang++-11,   cxxstd: '20', toolset: clang,  install: clang-11, os: ubuntu-20.04 }
+          - { compiler: clang++-12,   cxxstd: '20', toolset: clang,  install: clang-12, os: ubuntu-20.04 }
+          - { compiler: clang++-13,   cxxstd: '20', toolset: clang,  install: clang-13, os: ubuntu-20.04 }
+          - { compiler: clang++-14,   cxxstd: '20', toolset: clang,  install: clang-14, os: ubuntu-20.04 }
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
