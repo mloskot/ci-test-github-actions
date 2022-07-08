@@ -21,7 +21,7 @@ jobs:
           - { compiler: g++-9,        cxxstd: '14', toolset: gcc-9,  install: g++-9, os: ubuntu-18.04  }
           - { compiler: g++-10,       cxxstd: '14', toolset: gcc-10, install: g++-10, os: ubuntu-20.04 }
           - { compiler: clang++-3.6,  cxxstd: '14', toolset: clang,  install: clang-3.6, os: ubuntu-20.04, container: 'ubuntu:16.04'  }
-          - { compiler: clang++-3.6,  cxxstd: '14', toolset: clang,  install: clang-3.6, os: ubuntu-18.04 }
+          - { compiler: clang++-3.9,  cxxstd: '14', toolset: clang,  install: clang-3.9, os: ubuntu-18.04 }
           - { compiler: clang++-4.0,  cxxstd: '14', toolset: clang,  install: clang-4.0, os: ubuntu-18.04 }
     runs-on: ${{matrix.os}}
     steps:
@@ -30,7 +30,7 @@ jobs:
         if: matrix.install
         run: sudo apt install ${{matrix.install}}
       - name: Compiler Version
-        run: ${{matrix.compiler}} --version
+        run: ${{matrix.compiler}} --version || ${{matrix.toolset}} --version
 
   posix-cxxstd-17:
     needs: posix-cxxstd-14
