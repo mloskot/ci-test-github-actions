@@ -23,6 +23,9 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
+      - name: Install packages
+        if: matrix.install
+        run: sudo apt install ${{matrix.install}}
       - name: Compiler Version
         run: ${{matrix.compiler}} --version
 
@@ -61,5 +64,8 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
+      - name: Install packages
+        if: matrix.install
+        run: sudo apt install ${{matrix.install}}
       - name: Compiler Version
         run: ${{matrix.compiler}} --version
