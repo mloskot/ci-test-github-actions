@@ -1,5 +1,13 @@
 name: CI
 
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+  pull_request:
+
 jobs:
   # Minimum set of compilers with C++14 as default mode (e.g. GCC 6.1 through 10
   posix-cxxstd-14:
