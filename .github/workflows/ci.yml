@@ -1,0 +1,64 @@
+name: CI
+
+jobs:
+  # Minimum set of compilers with C++14 as default mode (e.g. GCC 6.1 through 10
+  posix-cxxstd-14:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - toolset: gcc-6
+            cxxstd: "14"
+            os: ubuntu-18.04
+            install: g++-6
+          - toolset: gcc-7
+            cxxstd: "14"
+            os: ubuntu-18.04
+          - toolset: gcc
+            compiler: g++-8
+            cxxstd: "14"
+            os: ubuntu-18.04
+            install: g++-8
+          - toolset: gcc-9
+            cxxstd: "14"
+            os: ubuntu-18.04
+          - toolset: gcc-10
+            cxxstd: "14"
+            os: ubuntu-18.04
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v2
+
+  posix-cxxstd-17:
+    needs: posix-cxxstd-14
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - toolset: gcc-6
+            cxxstd: "1z"
+            os: ubuntu-18.04
+            install: g++-6
+          - toolset: gcc-7
+            cxxstd: "17"
+            os: ubuntu-18.04
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v2
+
+  posix-cxxstd-20:
+    needs: posix-cxxstd-17
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - toolset: gcc-6
+            cxxstd: "1z"
+            os: ubuntu-18.04
+            install: g++-6
+          - toolset: gcc-7
+            cxxstd: "17"
+            os: ubuntu-18.04
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v2
