@@ -15,11 +15,11 @@ jobs:
       matrix:
         include:
           # C++14 is default in 6.1 through 10
-          - { compiler: gcc-6,     cxxstd: '14', os: ubuntu-18.04 }
-          - { compiler: gcc-7,     cxxstd: '14', os: ubuntu-18.04 }
-          - { compiler: gcc-8,     cxxstd: '14', os: ubuntu-18.04 }
-          - { compiler: gcc-9,     cxxstd: '14', os: ubuntu-18.04 }
-          - { compiler: gcc-10,    cxxstd: '14', os: ubuntu-20.04 }
+          - { compiler: gcc-6,     cxxstd: '14', os: ubuntu-18.04, install: g++-6  }
+          - { compiler: gcc-7,     cxxstd: '14', os: ubuntu-18.04, install: g++-7  }
+          - { compiler: gcc-8,     cxxstd: '14', os: ubuntu-18.04, install: g++-8  }
+          - { compiler: gcc-9,     cxxstd: '14', os: ubuntu-18.04, install: g++-9  }
+          - { compiler: gcc-10,    cxxstd: '14', os: ubuntu-20.04, install: g++-10 }
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
@@ -33,16 +33,19 @@ jobs:
       matrix:
         include:
           # C++17 is default in 11
-          - { compiler: gcc-6,     cxxstd: '17', os: ubuntu-18.04 }
-          - { compiler: gcc-7,     cxxstd: '17', os: ubuntu-18.04 }
-          - { compiler: gcc-8,     cxxstd: '17', os: ubuntu-18.04 }
-          - { compiler: gcc-9,     cxxstd: '17', os: ubuntu-18.04 }
-          - { compiler: gcc-10,    cxxstd: '17', os: ubuntu-20.04 }
-          - { compiler: gcc-11,    cxxstd: '17', os: ubuntu-20.04 }
-          - { compiler: gcc-12,    cxxstd: '17', os: ubuntu-22.04 }
+          - { compiler: gcc-6,     cxxstd: '17', os: ubuntu-18.04, install: g++-6  }
+          - { compiler: gcc-7,     cxxstd: '17', os: ubuntu-18.04, install: g++-7  }
+          - { compiler: gcc-8,     cxxstd: '17', os: ubuntu-18.04, install: g++-8  }
+          - { compiler: gcc-9,     cxxstd: '17', os: ubuntu-18.04, install: g++-9  }
+          - { compiler: gcc-10,    cxxstd: '17', os: ubuntu-20.04, install: g++-10 }
+          - { compiler: gcc-11,    cxxstd: '17', os: ubuntu-20.04, install: g++-11 }
+          - { compiler: gcc-12,    cxxstd: '17', os: ubuntu-22.04, install: g++-12 }
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
+      - name: Install packages
+        if: matrix.install
+        run: sudo apt install ${{matrix.install}}
       - name: Compiler Version
         run: ${{matrix.compiler}} --version
 
@@ -52,9 +55,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - { compiler: gcc-10,    cxxstd: '20', os: ubuntu-20.04 }
-        - { compiler: gcc-11,    cxxstd: '20', os: ubuntu-20.04 }
-        - { compiler: gcc-12,    cxxstd: '20', os: ubuntu-22.04 }
+        - { compiler: gcc-10,    cxxstd: '20', os: ubuntu-20.04, install: g++-10  }
+        - { compiler: gcc-11,    cxxstd: '20', os: ubuntu-20.04, install: g++-11  }
+        - { compiler: gcc-12,    cxxstd: '20', os: ubuntu-22.04, install: g++-12  }
     runs-on: ${{matrix.os}}
     steps:
       - uses: actions/checkout@v2
