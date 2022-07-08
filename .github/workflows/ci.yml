@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # C++14 is default in 6.1 through 10
+          # C++14 is default in GCC 6.1 through 10
           - { compiler: gcc-6,     cxxstd: '14', os: ubuntu-18.04, install: g++-6  }
           - { compiler: gcc-7,     cxxstd: '14', os: ubuntu-18.04, install: g++-7  }
           - { compiler: gcc-8,     cxxstd: '14', os: ubuntu-18.04, install: g++-8  }
@@ -35,12 +35,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # C++17 is default in 11
-          - { compiler: gcc-6,     cxxstd: '17', os: ubuntu-18.04, install: g++-6  }
-          - { compiler: gcc-7,     cxxstd: '17', os: ubuntu-18.04, install: g++-7  }
-          - { compiler: gcc-8,     cxxstd: '17', os: ubuntu-18.04, install: g++-8  }
-          - { compiler: gcc-9,     cxxstd: '17', os: ubuntu-18.04, install: g++-9  }
-          - { compiler: gcc-10,    cxxstd: '17', os: ubuntu-20.04, install: g++-10 }
+          # C++17 is default in GCC 11 through 12
           - { compiler: gcc-11,    cxxstd: '17', os: ubuntu-20.04, install: g++-11 }
           - { compiler: gcc-12,    cxxstd: '17', os: ubuntu-22.04, install: g++-12 }
     runs-on: ${{matrix.os}}
@@ -58,6 +53,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # C++20 is available in GCC 10 through 12
         - { compiler: gcc-10,    cxxstd: '20', os: ubuntu-20.04, install: g++-10  }
         - { compiler: gcc-11,    cxxstd: '20', os: ubuntu-20.04, install: g++-11  }
         - { compiler: gcc-12,    cxxstd: '20', os: ubuntu-22.04, install: g++-12  }
