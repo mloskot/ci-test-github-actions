@@ -44,7 +44,7 @@ jobs:
         include:
           # C++17 is default in GCC 11 through 12
           - { compiler: g++-11,       cxxstd: '17', toolset: gcc-11, install: g++-11,     os: ubuntu-20.04 }
-          - { compiler: g++-12,       cxxstd: '17', toolset: gcc-12, install: g++-12,     os: ubuntu-20.04 }
+          - { compiler: g++-12,       cxxstd: '17', toolset: gcc-12, install: g++-12,     os: ubuntu-22.04 }
           - { compiler: clang++-5.0,  cxxstd: '17', toolset: clang,  install: clang-5.0,  os: ubuntu-18.04 }
           - { compiler: clang++-6.0,  cxxstd: '17', toolset: clang,  install: clang-6.0,  os: ubuntu-18.04 }
           - { compiler: clang++-7,    cxxstd: '17', toolset: clang,  install: clang-7,    os: ubuntu-18.04 }
